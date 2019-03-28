@@ -68,8 +68,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :catering_app, CateringApp.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "catering",
+  password: "catering_db_passwd",
   database: "catering_app_dev",
   hostname: "localhost",
   pool_size: 10

@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CateringApp · Phoenix Framework</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-  </head>
-  <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CateringApp · Phoenix Framework</title>
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+</head>
+<body>
+  <header>
+    <section class="container">
+      <nav role="navigation">
+        <ul>
+          <li><a href="/users">Users</a></li>
+          <li><a href="/">Home</a></li>
+          <li>
+            <%= if @current_user do %>
+            <p class="my-3">
+              Logged in as: <%= @current_user.username %> |
+              <%= link("Logout", to: Routes.sessions_path(@conn, :delete), method: :delete) %>
+            </p>
+            <% else %>
+            <%= form_for @conn, Routes.sessions_path(@conn, :create), fn f -> %>
+            <%= text_input(f, :username, placeholder: "username") %>
+            <%= text_input(f, :password, placeholder: "password") %>
+            <%= submit "Login" %>
+            <% end %>
+            <% end  %>
           </ul>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
       </section>
     </header>
     <main role="main" class="container">
@@ -27,4 +38,4 @@
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
-</html>
+  </html>
