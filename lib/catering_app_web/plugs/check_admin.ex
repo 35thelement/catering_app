@@ -4,10 +4,12 @@ defmodule CateringAppWeb.Plugs.CheckAdmin do
   def init(args), do: args
 
   def call(conn, _params) do
-    IO.inspect(String.to_integer(conn.params["id"]))
     user = conn.assigns[:current_user]
-    if user.admin  or user.id == String.to_integer(conn.params["id"]) do
-      conn
+
+    if user do
+      if user.admin or user.id == String.to_integer(conn.params["id"]) do
+        conn
+      end
     else
       conn
       |> put_flash(:error, "Permission denied!")
