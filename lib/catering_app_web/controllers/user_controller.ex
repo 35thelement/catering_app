@@ -4,6 +4,8 @@ defmodule CateringAppWeb.UserController do
   alias CateringApp.Users
   alias CateringApp.Users.User
 
+  plug CateringAppWeb.Plugs.CheckAdmin when action in [:new, :create, :update, :delete]
+
   def index(conn, _params) do
     users = Users.list_users()
     render(conn, "index.html", users: users)
