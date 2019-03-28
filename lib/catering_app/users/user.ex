@@ -6,6 +6,7 @@ defmodule CateringApp.Users.User do
     field :bio, :string
     field :is_caterer, :boolean, default: false
     field :password_hash, :string
+    field :admin, :boolean, default: false
     field :username, :string
 
     field :password, :string, virtual: true
@@ -17,11 +18,11 @@ defmodule CateringApp.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:username, :password, :password_confirmation, :is_caterer, :bio])
+    |> cast(attrs, [:username, :password, :password_confirmation, :admin, :is_caterer, :bio])
     |> validate_confirmation(:password)
     |> validate_pass(:password)
     |> hash_pass()
-    |> validate_required([:username, :password_hash, :is_caterer, :bio])
+    |> validate_required([:username, :password_hash, :admin, :is_caterer, :bio])
   end
 
   def get_auth_user(username, password) do

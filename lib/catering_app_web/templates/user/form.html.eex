@@ -1,27 +1,35 @@
 <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+  <p>Oops, something went wrong! Please check the errors below.</p>
+</div>
+<% end %>
 
-  <%= label f, :username %>
-  <%= text_input f, :username %>
-  <%= error_tag f, :username %>
+<%= label f, :username %>
+<%= text_input f, :username %>
+<%= error_tag f, :username %>
 
-  <%= label f, :password %>
-  <%= text_input f, :password %>
-  <%= error_tag f, :password %>
+<%= label f, :password %>
+<%= text_input f, :password %>
+<%= error_tag f, :password %>
 
-  <%= label f, :is_caterer %>
-  <%= checkbox f, :is_caterer %>
-  <%= error_tag f, :is_caterer %>
+<%= label f, :is_caterer %>
+<%= checkbox f, :is_caterer %>
+<%= error_tag f, :is_caterer %>
 
-  <%= label f, :bio %>
-  <%= textarea f, :bio %>
-  <%= error_tag f, :bio %>
+<%= if @current_user do %>
+<%= if @current_user.admin do %>
+<%= label f, :admin %>
+<%= checkbox f, :admin %>
+<%= error_tag f, :admin %>
+<% end %>
+<% end %>
 
-  <div>
-    <%= submit "Save" %>
-  </div>
+<%= label f, :bio %>
+<%= textarea f, :bio %>
+<%= error_tag f, :bio %>
+
+<div>
+  <%= submit "Save" %>
+</div>
 <% end %>

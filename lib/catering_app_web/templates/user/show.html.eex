@@ -12,6 +12,15 @@
     <%= @user.is_caterer %>
   </li>
 
+  <%= if @current_user do %>
+  <%= if @current_user.admin do %>
+  <li>
+    <strong>Is admin:</strong>
+    <%= @user.admin %>
+  </li>
+  <% end %>
+  <% end %>
+
   <li>
     <strong>Bio:</strong>
     <%= @user.bio %>
