@@ -32,6 +32,11 @@
     <%= @event.day %>
   </li>
 
+  <li>
+    <strong>Menu</strong>
+    <%= link "View Menu", to: Routes.menu_path(@conn, :show, @event.menu) %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>

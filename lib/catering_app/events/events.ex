@@ -35,7 +35,10 @@ defmodule CateringApp.Events do
       ** (Ecto.NoResultsError)
 
   """
-  def get_event!(id), do: Repo.get!(Event, id)
+  def get_event!(id) do
+     Repo.get!(Event, id)
+     |> Repo.preload(:menu)
+   end
 
   @doc """
   Creates a event.

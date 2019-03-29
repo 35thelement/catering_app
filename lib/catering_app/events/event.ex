@@ -11,6 +11,7 @@ defmodule CateringApp.Events.Event do
     field :preferences, :string
     belongs_to :client, CateringApp.Users.User
     belongs_to :caterer, CateringApp.Users.User
+    has_one :menu, CateringApp.Menus.Menu
 
     timestamps()
   end

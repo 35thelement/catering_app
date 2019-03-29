@@ -14,5 +14,10 @@ hash = Argon2.hash_pwd_salt("password")
 
 alias CateringApp.Repo
 alias CateringApp.Users.User
+alias CateringApp.Events.Event
+alias CateringApp.Menus.Menu
 
-Repo.insert!(%User{username: "admin", password_hash: hash, admin: true, is_caterer: false, bio: "The admin user."})
+admin = Repo.insert!(%User{username: "admin", password_hash: hash, admin: true, is_caterer: false, bio: "The admin user."})
+caterer = Repo.insert!(%User{username: "Caterer A", password_hash: hash, admin: false, is_caterer: true, bio: "A sample caterer."})
+event = Repo.insert!(%Event{name: "Event A", day: ~D[2020-01-01], approved: false, caterer_turn: false, preferences: "", feedback: "", client: admin, caterer: caterer})
+Repo.insert!(%Menu{event: event, dish1: 1, dish2: 2, dish3: 3, dish4: 4, dish5: 5})

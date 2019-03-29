@@ -1,0 +1,33 @@
+<h1>Show Menu</h1>
+
+<ul>
+
+  <li>
+    <strong>Dish 1:</strong>
+    <%= @menu.dish1 %>
+  </li>
+
+  <li>
+    <strong>Dish 2:</strong>
+    <%= @menu.dish2 %>
+  </li>
+
+  <li>
+    <strong>Dish 3:</strong>
+    <%= @menu.dish2 %>
+  </li>
+
+  <li>
+    <strong>Dish 4:</strong>
+    <%= @menu.dish4 %>
+  </li>
+
+  <li>
+    <strong>Dish 5:</strong>
+    <%= @menu.dish5 %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.menu_path(@conn, :edit, @menu) %></span>
+<span><%= link "Back", to: Routes.menu_path(@conn, :index) %></span>
