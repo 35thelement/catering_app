@@ -43,7 +43,7 @@ defmodule CateringApp.Users do
   def get_user(id) do
     Repo.one from u in User,
     where: u.id == ^id,
-    preload: [:events]
+    preload: [:events_client, :events_caterer]
   end
 
   @doc """
