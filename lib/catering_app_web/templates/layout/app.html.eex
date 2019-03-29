@@ -12,8 +12,9 @@
     <section class="container">
       <nav role="navigation">
         <ul>
-          <li><a href="/users">Users</a></li>
           <li><a href="/">Home</a></li>
+          <li><a href="/users">Users</a></li>
+          <li><a href="/events">Events</a></li>
           <li>
             <%= if @current_user do %>
             <p class="my-3">
