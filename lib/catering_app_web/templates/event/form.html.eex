@@ -1,0 +1,48 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= if @current_user do %>
+  <%= if !@current_user.is_caterer do %>
+  <%= hidden_input f, :client_id %>
+
+  <%= label f, :caterer_id %>
+  <%= select f, :caterer_id, Enum.map(@caterers, &{&1.username, &1.id}) %>
+  <%= error_tag f, :caterer_id %>
+  <% else %>
+  <%= hidden_input f, :client_id %>
+  <%= hidden_input f, :caterer_id %>
+  <% end %>
+  <% end %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :approved %>
+  <%= checkbox f, :approved %>
+  <%= error_tag f, :approved %>
+
+  <%= label f, :caterer_turn %>
+  <%= checkbox f, :caterer_turn %>
+  <%= error_tag f, :caterer_turn %>
+
+  <%= label f, :preferences %>
+  <%= text_input f, :preferences %>
+  <%= error_tag f, :preferences %>
+
+  <%= label f, :feedback %>
+  <%= text_input f, :feedback %>
+  <%= error_tag f, :feedback %>
+
+  <%= label f, :day %>
+  <%= date_select f, :day %>
+  <%= error_tag f, :day %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

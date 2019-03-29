@@ -40,7 +40,19 @@ defmodule CateringApp.Users do
   @doc """
   Gets a single user. Raises no error.
   """
-  def get_user(id), do: Repo.get(User, id)
+  def get_user(id) do
+    Repo.one from u in User,
+    where: u.id == ^id,
+    preload: [:events]
+  end
+
+  @doc """
+  Get all users that are caterers.
+  """
+  def get_caterers() do
+    Repo.all from u in User,
+    where: u.is_caterer
+  end
 
   @doc """
   Gets a user that matches a username.

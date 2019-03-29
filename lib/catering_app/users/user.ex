@@ -8,6 +8,7 @@ defmodule CateringApp.Users.User do
     field :password_hash, :string
     field :admin, :boolean, default: false
     field :username, :string
+    has_many :events, CateringApp.Events.Event, foreign_key: :client_id, references: :id
 
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
