@@ -17,12 +17,10 @@
 <%= checkbox f, :is_caterer %>
 <%= error_tag f, :is_caterer %>
 
-<%= if @current_user do %>
-<%= if @current_user.admin do %>
+<%= if @current_user != nil and @current_user.admin do %>
 <%= label f, :admin %>
 <%= checkbox f, :admin %>
 <%= error_tag f, :admin %>
-<% end %>
 <% end %>
 
 <%= label f, :bio %>
