@@ -4,7 +4,7 @@ defmodule CateringAppWeb.SessionsController do
   def create(conn, %{"username" => username, "password" => password}) do
     user = CateringApp.Users.User.get_auth_user(username, password)
     if user do
-      IO.inspect("Retrieved User")
+      IO.inspect(user)
       conn
       |> put_session(:user_id, user.id)
       |> put_flash(:info, "Welcome back, #{user.username}")

@@ -1,5 +1,63 @@
 <div>
   <div>
     <h1>Catering App!</h1>
+    <%= if @current_user do %>
+    <h2>Your Events</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Approved</th>
+          <%= if !@current_user.is_caterer do %>
+          <th>Caterer</th>
+          <% else %>
+          <th>Client</th>
+          <% end %>
+          <th>Preferences</th>
+          <th>Feedback</th>
+          <th>Day</th>
+
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= if !@current_user.is_caterer do %>
+        <%= for event <- @current_user.events_client do %>
+        <tr>
+          <td><%= event.name %></td>
+          <td><%= event.approved %></td>
+          <td><%= event.caterer.username %></td>
+          <td><%= event.preferences %></td>
+          <td><%= event.feedback %></td>
+          <td><%= event.day %></td>
+
+          <td>
+            <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
+            <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
+            <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+          </td>
+        </tr>
+        <% end %>
+        <% else %>
+        <%= for event <- @current_user.events_caterer do %>
+        <tr>
+          <td><%= event.name %></td>
+          <td><%= event.approved %></td>
+          <td><%= event.client.username %></td>
+          <td><%= event.preferences %></td>
+          <td><%= event.feedback %></td>
+          <td><%= event.day %></td>
+
+          <td>
+            <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
+            <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
+            <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
   </div>
 </div>
