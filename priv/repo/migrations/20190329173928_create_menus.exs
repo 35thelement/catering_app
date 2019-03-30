@@ -3,11 +3,11 @@ defmodule CateringApp.Repo.Migrations.CreateMenus do
 
   def change do
     create table(:menus) do
-      add :dish1, :integer
-      add :dish2, :integer
-      add :dish3, :integer
-      add :dish4, :integer
-      add :dish5, :integer
+      add :dish1, :string
+      add :dish2, :string
+      add :dish3, :string
+      add :dish4, :string
+      add :dish5, :string
       add :event_id, references(:events, on_delete: :nothing)
 
       timestamps()

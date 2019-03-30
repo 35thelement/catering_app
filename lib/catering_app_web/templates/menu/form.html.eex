@@ -6,8 +6,24 @@
   <% end %>
 
   <%= label f, :dish1 %>
-  <%= number_input f, :dish1 %>
+  <%= text_input f, :dish1 %>
   <%= error_tag f, :dish1 %>
+
+  <%= label f, :dish2 %>
+  <%= text_input f, :dish2 %>
+  <%= error_tag f, :dish2 %>
+
+  <%= label f, :dish3 %>
+  <%= text_input f, :dish3 %>
+  <%= error_tag f, :dish3 %>
+
+  <%= label f, :dish4 %>
+  <%= text_input f, :dish4 %>
+  <%= error_tag f, :dish4 %>
+
+  <%= label f, :dish5 %>
+  <%= text_input f, :dish5 %>
+  <%= error_tag f, :dish5 %>
 
   <div>
     <%= submit "Save" %>

@@ -14,7 +14,7 @@
 
   <li>
     <strong>Dish 3:</strong>
-    <%= @menu.dish2 %>
+    <%= @menu.dish3 %>
   </li>
 
   <li>

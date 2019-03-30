@@ -3,11 +3,11 @@ defmodule CateringApp.Menus.Menu do
   import Ecto.Changeset
 
   schema "menus" do
-    field :dish1, :integer
-    field :dish2, :integer
-    field :dish3, :integer
-    field :dish4, :integer
-    field :dish5, :integer
+    field :dish1, :string
+    field :dish2, :string
+    field :dish3, :string
+    field :dish4, :string
+    field :dish5, :string
     belongs_to :event, CateringApp.Events.Event
 
 
