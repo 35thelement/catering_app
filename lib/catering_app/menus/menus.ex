@@ -51,6 +51,7 @@ defmodule CateringApp.Menus do
 
   """
   def create_menu(attrs \\ %{}) do
+    IO.inspect(attrs)
     %Menu{}
     |> Menu.changeset(attrs)
     |> Repo.insert()

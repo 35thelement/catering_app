@@ -20,6 +20,6 @@ defmodule CateringApp.Events.Event do
   def changeset(event, attrs) do
     event
     |> cast(attrs, [:name, :approved, :caterer_turn, :preferences, :feedback, :day, :client_id, :caterer_id])
-    |> validate_required([:name, :approved, :caterer_turn, :preferences, :feedback, :day, :client_id, :caterer_id])
+    |> validate_required([:name, :approved, :caterer_turn, :preferences, :day, :client_id, :caterer_id])
   end
 end

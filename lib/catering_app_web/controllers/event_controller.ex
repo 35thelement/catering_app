@@ -3,6 +3,8 @@ defmodule CateringAppWeb.EventController do
 
   alias CateringApp.Events
   alias CateringApp.Events.Event
+  alias CateringApp.Menus
+  alias CateringApp.Menus.Menu
 
   def index(conn, _params) do
     events = Events.list_events()
@@ -19,6 +21,7 @@ defmodule CateringAppWeb.EventController do
   def create(conn, %{"event" => event_params}) do
     case Events.create_event(event_params) do
       {:ok, event} ->
+        Menus.create_menu(%{event_id: event.id, dish1: "-1", dish2: "-1", dish3: "-1", dish4: "-1", dish5: "-1"})
         conn
         |> put_flash(:info, "Event created successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
@@ -57,6 +60,8 @@ defmodule CateringAppWeb.EventController do
 
   def delete(conn, %{"id" => id}) do
     event = Events.get_event!(id)
+    Menus.delete_menu(event.menu)
+    IO.inspect(event)
     {:ok, _event} = Events.delete_event(event)
 
     conn

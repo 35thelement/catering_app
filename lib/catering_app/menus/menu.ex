@@ -17,7 +17,7 @@ defmodule CateringApp.Menus.Menu do
   @doc false
   def changeset(menu, attrs) do
     menu
-    |> cast(attrs, [:dish1, :dish2, :dish3, :dish4, :dish5])
-    |> validate_required([:dish1, :dish2, :dish3, :dish4, :dish5])
+    |> cast(attrs, [:event_id, :dish1, :dish2, :dish3, :dish4, :dish5])
+    |> validate_required([:event_id, :dish1, :dish2, :dish3, :dish4, :dish5])
   end
 end

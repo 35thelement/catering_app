@@ -7,7 +7,8 @@
 
   <%= if @current_user do %>
   <%= if !@current_user.is_caterer do %>
-  <%= hidden_input f, :client_id %>
+  <%= hidden_input f, :client_id, value: @current_user.id %>
+  <%= error_tag f, :client_id %>
 
   <%= label f, :caterer_id %>
   <%= select f, :caterer_id, Enum.map(@caterers, &{&1.username, &1.id}) %>
