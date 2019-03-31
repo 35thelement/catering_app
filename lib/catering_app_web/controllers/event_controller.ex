@@ -21,7 +21,14 @@ defmodule CateringAppWeb.EventController do
   def create(conn, %{"event" => event_params}) do
     case Events.create_event(event_params) do
       {:ok, event} ->
-        Menus.create_menu(%{event_id: event.id, dish1: "-1", dish2: "-1", dish3: "-1", dish4: "-1", dish5: "-1"})
+        Menus.create_menu(%{
+          event_id: event.id,
+          dish1: "No Dish Selected",
+          dish2: "No Dish Selected",
+          dish3: "No Dish Selected",
+          dish4: "No Dish Selected",
+          dish5: "No Dish Selected"
+        })
         conn
         |> put_flash(:info, "Event created successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
