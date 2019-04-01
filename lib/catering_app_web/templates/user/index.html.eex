@@ -1,6 +1,6 @@
-<h1>Listing Caterers</h1>
+<h1>Registered Caterers</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Username</th>
