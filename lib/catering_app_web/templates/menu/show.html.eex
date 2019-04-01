@@ -30,4 +30,4 @@
 </ul>
 
 <span><%= link "Edit", to: Routes.menu_path(@conn, :edit, @menu) %></span>
-<span><%= link "Back", to: Routes.menu_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.event_path(@conn, :show, @menu.event_id) %></span>
