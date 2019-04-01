@@ -21,5 +21,6 @@ defmodule CateringApp.Events.Event do
     event
     |> cast(attrs, [:name, :approved, :caterer_turn, :preferences, :feedback, :day, :client_id, :caterer_id])
     |> validate_required([:name, :approved, :caterer_turn, :preferences, :day, :client_id, :caterer_id])
+    |> validate_format(:preferences, ~r/^([a-zA-Z]+,?)*$/)
   end
 end

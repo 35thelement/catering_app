@@ -31,7 +31,7 @@
   <%= checkbox f, :caterer_turn %>
   <%= error_tag f, :caterer_turn %>
 
-  <%= label f, :preferences %>
+  <%= label f, :preferences, "Enter your ingredients preferences as ingredients separated by commas with no spaces or periods." %>
   <%= text_input f, :preferences %>
   <%= error_tag f, :preferences %>
 
