@@ -6,6 +6,8 @@ defmodule CateringAppWeb.EventController do
   alias CateringApp.Menus
   alias CateringApp.Menus.Menu
 
+  plug CateringAppWeb.Plugs.CheckUser when action in [:new, :create, :update, :delete]
+
   def index(conn, _params) do
     events = Events.list_events()
     render(conn, "index.html", events: events)

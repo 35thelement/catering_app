@@ -5,32 +5,31 @@
     <tr>
       <th>Name</th>
       <th>Approved</th>
-      <th>Caterer turn</th>
-      <th>Preferences</th>
-      <th>Feedback</th>
       <th>Day</th>
-
+      <%= if @current_user do %>
       <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-<%= for event <- @events do %>
-    <tr>
-      <td><%= event.name %></td>
-      <td><%= event.approved %></td>
-      <td><%= event.caterer_turn %></td>
-      <td><%= event.preferences %></td>
-      <td><%= event.feedback %></td>
-      <td><%= event.day %></td>
-
-      <td>
-        <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
-        <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
-        <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
+  <%= for event <- @events do %>
+  <tr>
+    <td><%= event.name %></td>
+    <td><%= event.approved %></td>
+    <td><%= event.day %></td>
+    <%= if @current_user != nil and (@current_user.id == event.client_id or @current_user.id == event.caterer_id) do %>
+    <td>
+      <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
+      <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
+      <%= if @current_user.id == event.client_id do %>
+      <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+      <% end %>
+    </td>
+    <% end %>
+  </tr>
+  <% end %>
+</tbody>
 </table>
-
+<%= if @current_user != nil and !@current_user.is_caterer do %>
 <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+<% end %>
