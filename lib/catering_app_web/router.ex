@@ -20,7 +20,7 @@ defmodule CateringAppWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/events", EventController
-    resources "/menus", MenuController
+    resources "/menus", MenuController, only: [:show, :update, :edit]
     resources "/sessions", SessionsController, only: [:create, :delete], singleton: true
   end
 
