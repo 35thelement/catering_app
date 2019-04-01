@@ -52,6 +52,8 @@
         <% end %>
       </tbody>
     </table>
+    <% else %>
+    <span><%= link "Register", to: Routes.user_path(@conn, :new) %></span>
     <% end %>
   </div>
 </div>
