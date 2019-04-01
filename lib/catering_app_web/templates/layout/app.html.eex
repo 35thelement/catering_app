@@ -23,20 +23,20 @@
       <li class="nav-item"><a  class="nav-link" href="/users">Users</a></li>
       <li class="nav-item"><a  class="nav-link" href="/events">Events</a></li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <div>
       <%= if @current_user do %>
       <p class="my-3">
         Logged in as: <%= @current_user.username %> |
         <%= link("Logout", to: Routes.sessions_path(@conn, :delete), method: :delete) %>
       </p>
       <% else %>
-        <%= form_for @conn, Routes.sessions_path(@conn, :create), fn f -> %>
+        <%= form_for @conn, Routes.sessions_path(@conn, :create), [class: "form-inline my-2 my-lg-0"], fn f -> %>
           <%= text_input(f, :username, placeholder: "username", class: "form-control mr-sm-2") %>
-          <%= text_input(f, :password, placeholder: "password", class: "form-control mr-sm-2") %>
-          <%= submit "Login" %>
+          <%= password_input(f, :password, placeholder: "password", class: "form-control mr-sm-2") %>
+          <%= submit "Login", class: "btn btn-secondary" %>
         <% end %>
       <% end  %>
-    </form>
+    </div>
   </div>
   </div>
 </nav>
