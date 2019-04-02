@@ -3,7 +3,7 @@
 <h1>All Users</h1>
 <% end %>
 <%= if @current_user.is_caterer do %>
-<h1>List of Clients (Admins Excluded)</h1>
+<h1>List of Clients</h1>
 <% else %>
 <h1>List of Registered Caterers</h1>
 <% end %>
@@ -15,7 +15,6 @@
   <thead>
     <tr>
       <th>Username</th>
-      <th>Is caterer</th>
       <th>Bio</th>
 
       <th></th>
@@ -25,7 +24,6 @@
   <%= for user <- @users do %>
   <tr>
     <td><%= user.username %></td>
-    <td><%= user.is_caterer %></td>
     <td><%= user.bio %></td>
 
     <td>
