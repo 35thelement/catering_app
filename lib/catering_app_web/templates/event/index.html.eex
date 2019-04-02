@@ -4,9 +4,9 @@
   <thead>
     <tr>
       <th>Name</th>
+      <%= if @current_user do %>
       <th>Approved</th>
       <th>Day</th>
-      <%= if @current_user do %>
       <th></th>
       <% end %>
     </tr>
@@ -15,9 +15,9 @@
   <%= for event <- @events do %>
   <tr>
     <td><%= event.name %></td>
+    <%= if @current_user != nil and (@current_user.id == event.client_id or @current_user.id == event.caterer_id) do %>
     <td><%= event.approved %></td>
     <td><%= event.day %></td>
-    <%= if @current_user != nil and (@current_user.id == event.client_id or @current_user.id == event.caterer_id) do %>
     <td>
       <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
       <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
