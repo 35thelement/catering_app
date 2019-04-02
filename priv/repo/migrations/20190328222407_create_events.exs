@@ -5,7 +5,6 @@ defmodule CateringApp.Repo.Migrations.CreateEvents do
     create table(:events) do
       add :name, :string
       add :approved, :boolean, default: false, null: false
-      add :caterer_turn, :boolean, default: false, null: false
       add :preferences, :string
       add :feedback, :string
       add :day, :date

@@ -57,6 +57,6 @@ defmodule CateringAppWeb.MenuController do
 
     conn
     |> put_flash(:info, "Menu deleted successfully.")
-    |> redirect(to: Routes.menu_path(conn, :index))
+    |> redirect(to: Routes.event_path(conn, :index))
   end
 end

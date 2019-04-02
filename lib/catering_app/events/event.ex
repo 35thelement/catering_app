@@ -4,7 +4,6 @@ defmodule CateringApp.Events.Event do
 
   schema "events" do
     field :approved, :boolean, default: false
-    field :caterer_turn, :boolean, default: false
     field :day, :date
     field :feedback, :string
     field :name, :string
@@ -19,8 +18,8 @@ defmodule CateringApp.Events.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:name, :approved, :caterer_turn, :preferences, :feedback, :day, :client_id, :caterer_id])
-    |> validate_required([:name, :approved, :caterer_turn, :preferences, :day, :client_id, :caterer_id])
+    |> cast(attrs, [:name, :approved, :preferences, :feedback, :day, :client_id, :caterer_id])
+    |> validate_required([:name, :approved, :preferences, :day, :client_id, :caterer_id])
     |> validate_format(:preferences, ~r/^([a-zA-Z]+,?)*$/)
   end
 end

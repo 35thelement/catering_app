@@ -13,11 +13,6 @@
   </li>
 
   <li>
-    <strong>Caterer turn:</strong>
-    <%= @event.caterer_turn %>
-  </li>
-
-  <li>
     <strong>Preferences:</strong>
     <%= @event.preferences %>
   </li>
