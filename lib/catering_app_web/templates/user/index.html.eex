@@ -38,5 +38,6 @@
   <% end %>
 </tbody>
 </table>
-
+<%= if @current_user != nil and not @current_user.admin do %>
 <span><%= link "Register", to: Routes.user_path(@conn, :new) %></span>
+<% end %>
