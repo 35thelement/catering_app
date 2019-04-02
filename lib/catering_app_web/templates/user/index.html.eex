@@ -1,4 +1,15 @@
-<h1>Registered Caterers</h1>
+<%= if @current_user != nil do %>
+<%= if @current_user.admin do %>
+<h1>All Users</h1>
+<% end %>
+<%= if @current_user.is_caterer do %>
+<h1>List of Clients (Admins Excluded)</h1>
+<% else %>
+<h1>List of Registered Caterers</h1>
+<% end %>
+<% else %>
+<h1>List of Registered Caterers</h1>
+<% end %>
 
 <table class="table">
   <thead>
@@ -12,7 +23,6 @@
   </thead>
   <tbody>
   <%= for user <- @users do %>
-  <%= if user.is_caterer or @current_user != nil and @current_user.admin do %>
   <tr>
     <td><%= user.username %></td>
     <td><%= user.is_caterer %></td>
@@ -26,7 +36,6 @@
       <% end %>
     </td>
   </tr>
-  <% end %>
   <% end %>
 </tbody>
 </table>

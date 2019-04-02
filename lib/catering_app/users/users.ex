@@ -22,6 +22,22 @@ defmodule CateringApp.Users do
   end
 
   @doc """
+  Returns the list of caterers.
+  """
+  def list_caterers do
+    Repo.all from u in User,
+    where: u.is_caterer
+  end
+
+  @doc """
+  Returns the list of non-admin clients.
+  """
+  def list_clients do
+    Repo.all from u in User,
+    where: not u.is_caterer and not u.admin
+  end
+
+  @doc """
   Gets a single user.
 
   Raises `Ecto.NoResultsError` if the User does not exist.

@@ -6,8 +6,21 @@ defmodule CateringAppWeb.UserController do
 
   plug CateringAppWeb.Plugs.CheckAdmin when action in [:update, :delete]
 
+  def get_users(current_user) do
+    if current_user == nil do
+      Users.list_caterers()
+    else
+      cond do
+        current_user.admin -> Users.list_users()
+        current_user.is_caterer -> IO.inspect(Users.list_clients())
+        true -> Users.list_caterers()
+      end
+    end
+  end
+
   def index(conn, _params) do
-    users = Users.list_users()
+    current_user = conn.assigns[:current_user]
+    users = get_users(current_user)
     render(conn, "index.html", users: users)
   end
 
