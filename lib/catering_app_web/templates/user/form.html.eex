@@ -1,20 +1,26 @@
+<div class="row bottom">
+<div class="col-12">
+
+
+
 <%= form_for @changeset, @action, fn f -> %>
 <%= if @changeset.action do %>
 <div class="alert alert-danger">
-  <p>Oops, something went wrong! Please check the errors below.</p>
+  <p>Oops, something went wrong!</p>
 </div>
 <% end %>
 
 <%= label f, :username %>
-<%= text_input f, :username %>
+<%= text_input f, :username, class: "form-control" %>
 <%= error_tag f, :username %>
 
 <%= label f, :password %>
-<%= password_input f, :password %>
+<%= password_input f, :password, class: "form-control"  %>
 <%= error_tag f, :password %>
 
-<%= label f, :is_caterer %>
-<%= checkbox f, :is_caterer %>
+
+<%= label f, "Caterer", class: "check-margin" %>
+<%= checkbox f, :is_caterer  %>
 <%= error_tag f, :is_caterer %>
 
 <%= if @current_user != nil and @current_user.admin do %>
@@ -23,11 +29,19 @@
 <%= error_tag f, :admin %>
 <% end %>
 
-<%= label f, :bio %>
-<%= textarea f, :bio %>
-<%= error_tag f, :bio %>
+<div class="row">
+  <div class="col-12">
+    <%= label f, :bio %>
+    <%= textarea f, :bio, class: "form-control"  %>
+    <%= error_tag f, :bio %>
+  </div>
 
-<div>
-  <%= submit "Save" %>
+
+</div>
+
+<div class="small-top">
+  <%= submit "Save", class: "btn" %>
 </div>
 <% end %>
+</div>
+</div>

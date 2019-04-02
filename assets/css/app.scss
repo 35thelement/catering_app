@@ -6,3 +6,54 @@
 body {
   font-family: 'Karla', sans-serif;
 }
+
+.btn {
+  background: #EF9D4B;
+  border: 1px solid #EF9D4B;
+  color: white;
+}
+
+.btn:hover {
+  background: #D87411;
+  border: 1px solid #D87411;
+  color: white;
+
+}
+
+a {
+  color: #0B8B9B;
+}
+
+a:hover {
+  color: #0B8B9B;
+  
+}
+
+.btn:active {
+  background: #D87411 !important;
+  border: 1px solid #D87411 !important;
+  color: white;
+
+}
+
+.btn-secondary {
+  background: none;
+  color: #EF9D4B;
+}
+
+.top-space {
+  margin-top: 30px;
+}
+
+.small-top {
+  margin-top: 20px;
+}
+
+.check-margin {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.bottom {
+  margin-bottom: 10px;
+}

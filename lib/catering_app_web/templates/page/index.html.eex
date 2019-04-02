@@ -1,6 +1,7 @@
-<div>
-  <div>
-    <h1>Catering App!</h1>
+<div class="row">
+
+  <div class="col-10 offset-1">
+    <h1 class="top-space">Welcome to Tangerine</h1>
     <%= if @current_user do %>
     <h2>Your Events</h2>
     <table class="table">
@@ -53,7 +54,26 @@
       </tbody>
     </table>
     <% else %>
-    <span><%= link "Register", to: Routes.user_path(@conn, :new) %></span>
+    <p>Tangerine helps caterers and clients connect to throw upscale private parties.</p>
+    <div class="row">
+      <div class="col-6">
+        <p>
+          <strong>For clients:</strong> We know how stressful it is to choose items for
+           a menu - we make it easy. Just select the foods you like from our list and a
+           caterer will provide you with the perfect plates.
+         </p>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>For caterers:</strong> Tangerine makes it easy to look at hundreds of recipes
+          that your clients will enjoy. From there you can use your expert judgement to select
+          the very best.
+        </p>
+      </div>
+    </div>
+
+
+    <span><%= link "Register", class: "btn btn-secondary", to: Routes.user_path(@conn, :new) %></span>
     <% end %>
   </div>
 </div>
