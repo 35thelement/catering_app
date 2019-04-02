@@ -16,7 +16,6 @@ defmodule CateringAppWeb.EventController do
   def new(conn, _params) do
     changeset = Events.change_event(%Event{})
     caterers = CateringApp.Users.get_caterers()
-    IO.inspect(caterers)
     render(conn, "new.html", changeset: changeset, caterers: caterers)
   end
 
@@ -25,7 +24,7 @@ defmodule CateringAppWeb.EventController do
       {:ok, event} ->
         Menus.create_menu(%{
           event_id: event.id,
-          preferences: "",
+          preferences: "preferences",
           dish1: "No Dish Selected",
           dish2: "No Dish Selected",
           dish3: "No Dish Selected",
