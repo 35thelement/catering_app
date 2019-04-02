@@ -4,7 +4,8 @@
 <% end %>
 <%= if @current_user.is_caterer do %>
 <h1>List of Clients</h1>
-<% else %>
+<% end %>
+<%= if not @current_user.admin and not @current_user.is_caterer do %>
 <h1>List of Registered Caterers</h1>
 <% end %>
 <% else %>
