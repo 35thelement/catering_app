@@ -2,8 +2,9 @@
 
   <div class="col-10 offset-1">
     <h1 class="top-space">Welcome to Tangerine</h1>
+    <p>Tangerine helps caterers and clients connect to throw upscale private parties.</p>
     <%= if @current_user do %>
-    <h2>Your Events</h2>
+    <h2 class="top-space">Your Events</h2>
     <table class="table">
       <thead>
         <tr>
@@ -53,8 +54,11 @@
         <% end %>
       </tbody>
     </table>
+    <span><%= link "New event", class: "btn", to: Routes.event_path(@conn, :new) %></span>
+
+
     <% else %>
-    <p>Tangerine helps caterers and clients connect to throw upscale private parties.</p>
+
     <div class="row">
       <div class="col-6">
         <p>
