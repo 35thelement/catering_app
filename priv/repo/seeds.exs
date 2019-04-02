@@ -17,7 +17,8 @@ alias CateringApp.Users.User
 alias CateringApp.Events.Event
 alias CateringApp.Menus.Menu
 
-admin = Repo.insert!(%User{username: "admin", password_hash: hash, admin: true, is_caterer: false, bio: "The admin user."})
+Repo.insert!(%User{username: "admin", password_hash: hash, admin: true, is_caterer: false, bio: "The admin user."})
+client = Repo.insert!(%User{username: "client A", password_hash: hash, admin: false, is_caterer: false, bio: "A sample client."})
 caterer = Repo.insert!(%User{username: "Caterer A", password_hash: hash, admin: false, is_caterer: true, bio: "A sample caterer."})
-event = Repo.insert!(%Event{name: "Event A", day: ~D[2020-01-01], approved: false, client: admin, caterer: caterer})
+event = Repo.insert!(%Event{name: "Event A", day: ~D[2020-01-01], approved: false, client: client, caterer: caterer})
 Repo.insert!(%Menu{event: event, preferences: "", feedback: "", dish1: "Chicken Tikka Marsala", dish2: "Cheese Fondue", dish3: "Puttanesca Pasta", dish4: "Grilled Salmon", dish5: "Chocolate Cake"})
