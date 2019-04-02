@@ -4,32 +4,16 @@
   <thead>
     <tr>
       <th>Name</th>
-      <%= if @current_user do %>
-      <th>Approved</th>
-      <th>Day</th>
-      <th></th>
-      <% end %>
     </tr>
   </thead>
   <tbody>
   <%= for event <- @events do %>
   <tr>
     <td><%= event.name %></td>
-    <%= if @current_user != nil and (@current_user.id == event.client_id or @current_user.id == event.caterer_id) do %>
-    <td><%= event.approved %></td>
-    <td><%= event.day %></td>
-    <td>
-      <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
-      <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
-      <%= if @current_user.id == event.client_id do %>
-      <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
-      <% end %>
-    </td>
-    <% end %>
   </tr>
   <% end %>
 </tbody>
 </table>
-<%= if @current_user != nil and !@current_user.is_caterer do %>
+<%= if @current_user != nil and not @current_user.is_caterer do %>
 <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
 <% end %>
