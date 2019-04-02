@@ -27,6 +27,16 @@
     <%= @menu.dish5 %>
   </li>
 
+  <li>
+    <strong>Preferences:</strong>
+    <%= @menu.preferences %>
+  </li>
+
+  <li>
+    <strong>Feedback:</strong>
+    <%= @menu.feedback %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.menu_path(@conn, :edit, @menu) %></span>

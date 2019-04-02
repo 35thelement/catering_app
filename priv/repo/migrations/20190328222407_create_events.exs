@@ -5,8 +5,6 @@ defmodule CateringApp.Repo.Migrations.CreateEvents do
     create table(:events) do
       add :name, :string
       add :approved, :boolean, default: false, null: false
-      add :preferences, :string
-      add :feedback, :string
       add :day, :date
       add :client_id, references(:users, on_delete: :delete_all), null: false
       add :caterer_id, references(:users, on_delete: :delete_all), null: false

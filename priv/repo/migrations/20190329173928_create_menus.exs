@@ -8,6 +8,8 @@ defmodule CateringApp.Repo.Migrations.CreateMenus do
       add :dish3, :string
       add :dish4, :string
       add :dish5, :string
+      add :preferences, :string
+      add :feedback, :string
       add :event_id, references(:events, on_delete: :nothing)
 
       timestamps()

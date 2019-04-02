@@ -13,16 +13,6 @@
   </li>
 
   <li>
-    <strong>Preferences:</strong>
-    <%= @event.preferences %>
-  </li>
-
-  <li>
-    <strong>Feedback:</strong>
-    <%= @event.feedback %>
-  </li>
-
-  <li>
     <strong>Day:</strong>
     <%= @event.day %>
   </li>
@@ -33,6 +23,13 @@
   </li>
 
 </ul>
+
+<script>
+window.menu_path = "<%= Routes.menu_path(@conn, :update, @event.menu) %>";
+</script>
+
+<%= if @current_user != nil and @current_user.is_caterer do %>
+<% end %>
 
 <span><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
 <span><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
