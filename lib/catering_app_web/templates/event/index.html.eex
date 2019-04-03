@@ -8,6 +8,7 @@
       <th>Name</th>
       <th>Client</th>
       <th>Event date</th>
+      <th>Menu approved</th>
       <th></th>
 
     </tr>
@@ -18,8 +19,13 @@
     <td><%= event.name %></td>
     <td><%= CateringApp.Users.get_user(event.client_id).username %></td>
     <td><%= event.day %></td>
+    <td><%= event.approved %></td>
     <td>
-      <%= link "Details", to: Routes.event_path(@conn, :show, event) %>
+      <%= link "Menu", to: Routes.menu_path(@conn, :show, event.menu) %>
+
+      <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
+      <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+
     </td>
   </tr>
   <% end %>
