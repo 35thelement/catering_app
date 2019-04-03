@@ -22,6 +22,18 @@ defmodule CateringApp.Menus do
     |> Repo.preload(:event)
   end
 
+  def list_menus_by_event(event_id) do
+  if event_id do
+    query = from m in Menu,
+             where: m.event_id == ^event_id,
+             select: m
+    Repo.all(query)
+
+  else
+    []
+  end
+end
+
   @doc """
   Gets a single menu.
 

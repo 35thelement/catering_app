@@ -1,36 +1,39 @@
 <div class="row">
   <div class="col-8 offset-2 top-space">
     <h1>Your Events</h1>
+    <div class="row">
+      <%= for event <- CateringApp.Events.list_events_by_caterer(@current_user.id) do %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Client</th>
-      <th>Event date</th>
-      <th>Menu approved</th>
-      <th></th>
+      <div class="col-sm-6">
+    <div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= event.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.client_id).username %></h6>
+    <%= for menu <- CateringApp.Menus.list_menus_by_event(event.client_id) do %>
+      <p class="card-text">Dish 1: <%= menu.dish1 %> <br>
+      Dish 2: <%= menu.dish2 %><br>
+      Dish 3: <%= menu.dish3 %><br>
+      Dish 4: <%= menu.dish4 %><br>
+      Dish 5: <%= menu.dish5 %></p>
 
-    </tr>
-  </thead>
-  <tbody>
-  <%= for event <- CateringApp.Events.list_events_by_caterer(@current_user.id) do %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= CateringApp.Users.get_user(event.client_id).username %></td>
-    <td><%= event.day %></td>
-    <td><%= event.approved %></td>
-    <td>
-      <%= link "Menu", to: Routes.menu_path(@conn, :show, event.menu) %>
+    <% end %>
+    <%= if event.approved do %>
+    <p class="alert alert-success" role="alert">Approved</p>
+    <% else %>
+    <p class="alert alert-danger" role="alert">Not yet approved</p>
+    <% end %>
 
-      <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
-      <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+    <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
+    <%= link "Delete", class: "delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+  </div>
+</div>
+</div>
+<% end %>
 
-    </td>
-  </tr>
-  <% end %>
-</tbody>
-</table>
+</div>
+
+
+
 <%= if @current_user != nil and not @current_user.is_caterer do %>
 <span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
 <% end %>
