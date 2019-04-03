@@ -21,6 +21,7 @@ defmodule CateringAppWeb.UserController do
   def index(conn, _params) do
     current_user = conn.assigns[:current_user]
     users = get_users(current_user)
+
     render(conn, "index.html", users: users)
   end
 
@@ -32,6 +33,7 @@ defmodule CateringAppWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     case Users.create_user(user_params) do
       {:ok, user} ->
+        CateringAppWeb.TangerineChannel.broadcast_update()
         conn
         |> put_flash(:info, "User created successfully.")
         |> put_session(:user_id, user.id)
