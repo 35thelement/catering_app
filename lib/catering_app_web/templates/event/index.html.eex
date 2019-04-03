@@ -16,15 +16,17 @@
       Dish 4: <%= menu.dish4 %><br>
       Dish 5: <%= menu.dish5 %></p>
 
-    <% end %>
+
     <%= if event.approved do %>
     <p class="alert alert-success" role="alert">Approved</p>
     <% else %>
     <p class="alert alert-danger" role="alert">Not yet approved</p>
     <% end %>
+    <!-- <%= link "View Menu", to: Routes.menu_path(@conn, :show, event.menu) %> -->
 
-    <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
+    <%= link "Edit menu", to: Routes.menu_path(@conn, :edit, menu) %>
     <%= link "Delete", class: "delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
+<% end %>
   </div>
 </div>
 </div>
