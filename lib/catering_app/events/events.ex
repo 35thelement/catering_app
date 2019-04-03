@@ -21,6 +21,17 @@ defmodule CateringApp.Events do
     Repo.all(Event)
   end
 
+  def list_events_by_user(client_id, caterer_id) do
+  if client_id do
+    query = from e in Event,
+             where: e.client_id == ^client_id and e.caterer_id == ^caterer_id,
+             select: e
+    Repo.all(query)
+  else
+    []
+  end
+end
+
   @doc """
   Gets a single event.
 

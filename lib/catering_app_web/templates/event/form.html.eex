@@ -1,3 +1,5 @@
+<div class="row bottom">
+<div class="col-12">
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
@@ -11,7 +13,7 @@
   <%= error_tag f, :client_id %>
 
   <%= label f, :caterer_id %>
-  <%= select f, :caterer_id, Enum.map(@caterers, &{&1.username, &1.id}) %>
+  <%= select f, :caterer_id, Enum.map(@caterers, &{&1.username, &1.id}), class: "form-control" %>
   <%= error_tag f, :caterer_id %>
   <% else %>
   <%= hidden_input f, :client_id %>
@@ -20,18 +22,26 @@
   <% end %>
 
   <%= label f, :name %>
-  <%= text_input f, :name %>
+  <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 
-  <%= label f, :approved %>
-  <%= checkbox f, :approved %>
-  <%= error_tag f, :approved %>
+<div class="row">
+  <div class="col-12">
+    <%= label f, "Menu finalized:" %>
+    <%= checkbox f, :approved %>
+    <%= error_tag f, :approved %>
+  </div>
 
-  <%= label f, :day %>
+</div>
+
+
+  <%= label f, "Date of event:" %>
   <%= date_select f, :day %>
   <%= error_tag f, :day %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", class: "btn"%>
   </div>
 <% end %>
+</div>
+</div>

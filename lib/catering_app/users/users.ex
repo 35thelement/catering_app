@@ -37,6 +37,8 @@ defmodule CateringApp.Users do
     where: not u.is_caterer and not u.admin
   end
 
+
+
   @doc """
   Gets a single user.
 
