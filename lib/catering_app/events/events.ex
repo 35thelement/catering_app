@@ -21,6 +21,18 @@ defmodule CateringApp.Events do
     Repo.all(Event)
   end
 
+
+    def list_events_or(user_id) do
+    if user_id do
+      query = from e in Event,
+               where: e.client_id == ^user_id or e.caterer_id == ^user_id,
+               select: e
+      Repo.all(query)
+    else
+      []
+    end
+  end
+
   def list_events_by_user(client_id, caterer_id) do
   if client_id do
     query = from e in Event,
@@ -35,10 +47,36 @@ end
 def list_events_by_caterer(caterer_id) do
 if caterer_id do
   query = from e in Event,
+           where: e.caterer_id == ^caterer_id or e.client_id == ^caterer_id,
+           preload: :menu,
+           select: e
+  Repo.all(query)
+else
+  []
+end
+end
+
+
+def list_events_by_client(client_id) do
+if client_id do
+  query = from e in Event,
+           where: e.client_id == ^client_id,
+           preload: :menu,
+           select: e
+  Repo.all(query)
+else
+  []
+end
+end
+
+def count_events(caterer_id) do
+if caterer_id do
+  query = from e in Event,
            where: e.caterer_id == ^caterer_id,
            preload: :menu,
            select: e
   Repo.all(query)
+  length(Repo.all(query))
 else
   []
 end

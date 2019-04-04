@@ -5,57 +5,25 @@
     <p>Tangerine helps caterers and clients connect to throw upscale private parties.</p>
     <%= if @current_user do %>
     <%= if not @current_user.admin do %>
-    <h2 class="top-space">Your Events</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Approved</th>
-          <%= if !@current_user.is_caterer do %>
-          <th>Caterer</th>
-          <% else %>
-          <th>Client</th>
-          <% end %>
-          <th>Day</th>
+    <%= if  @current_user.is_caterer do %>
 
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= if !@current_user.is_caterer do %>
-        <%= for event <- @current_user.events_client do %>
-        <tr>
-          <td><%= event.name %></td>
-          <td><%= event.approved %></td>
-          <td><%= event.caterer.username %></td>
-          <td><%= event.day %></td>
+    <div class="row">
+      <div class="col-12">
+        <h2> You have
+          <%= CateringApp.Events.count_events(@current_user.id) %>
+          events
+        </h2>
+        <span><%= link "View events", class: "btn", to: Routes.event_path(@conn, :index) %></span>
 
-          <td>
-            <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
-            <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
-            <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
-          </td>
-        </tr>
-        <% end %>
-        <% else %>
-        <%= for event <- @current_user.events_caterer do %>
-        <tr>
-          <td><%= event.name %></td>
-          <td><%= event.approved %></td>
-          <td><%= event.client.username %></td>
-          <td><%= event.day %></td>
+      </div>
+  </div>
 
-          <td>
-            <%= link "Show", to: Routes.event_path(@conn, :show, event) %>
-            <%= link "Edit", to: Routes.event_path(@conn, :edit, event) %>
-            <%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
-          </td>
-        </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
+  <% else %>
+
     <span><%= link "New event", class: "btn", to: Routes.event_path(@conn, :new) %></span>
+    <% end %>
+    <h2 class="top-space">About you</h2>
+    <p>to do: fill in bio info</p>
     <% end %>
 
 

@@ -8,7 +8,12 @@
     <div class="card">
   <div class="card-body">
     <h5 class="card-title"><%= event.name %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.client_id).username %></h6>
+    <%= if @current_user.is_caterer do %>
+      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.client_id).username %></h6>
+    <% else %>
+      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.caterer_id).username %></h6>
+
+    <% end %>
     <%= for menu <- CateringApp.Menus.list_menus_by_event(event.client_id) do %>
       <p class="card-text">Dish 1: <%= menu.dish1 %> <br>
       Dish 2: <%= menu.dish2 %><br>
@@ -23,8 +28,14 @@
     <p class="alert alert-danger" role="alert">Not yet approved</p>
     <% end %>
     <!-- <%= link "View Menu", to: Routes.menu_path(@conn, :show, event.menu) %> -->
+    <%= if @current_user.is_caterer do %>
 
     <%= link "Edit menu", to: Routes.menu_path(@conn, :edit, menu) %>
+    <% else %>
+    <%= link "Edit", to: Routes.event_path(@conn, :edit, event)%>
+
+    <% end %>
+
     <%= link "Delete", class: "delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
 <% end %>
   </div>
