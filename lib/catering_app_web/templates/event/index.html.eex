@@ -1,8 +1,12 @@
 <div class="row">
   <div class="col-8 offset-2 top-space">
+    <%= if @current_user.admin do %>
+    <h1>All Events</h1>
+    <% else %>
     <h1>Your Events</h1>
+    <% end %>
     <div class="row">
-      <%= for event <- CateringApp.Events.list_events_by_caterer(@current_user.id) do %>
+      <%= for event <- @events do %>
 
       <div class="col-sm-6">
     <div class="card">
@@ -28,7 +32,7 @@
     <!-- <%= link "View Menu", to: Routes.menu_path(@conn, :show, event.menu) %> -->
 
     <%= link "Edit menu", class: "btn", to: Routes.menu_path(@conn, :edit, event.menu) %>
-    <%= if !@current_user.is_caterer do %>
+    <%= if not @current_user.is_caterer do %>
     <%= link "Edit details", class: "padd", to: Routes.event_path(@conn, :edit, event)%>
 
 

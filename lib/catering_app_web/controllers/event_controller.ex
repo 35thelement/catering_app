@@ -9,8 +9,14 @@ defmodule CateringAppWeb.EventController do
   plug CateringAppWeb.Plugs.CheckUser when action in [:new, :create, :update, :delete]
 
   def index(conn, _params) do
-    events = Events.list_events()
-    render(conn, "index.html", events: events)
+    current_user = conn.assigns[:current_user]
+    if current_user.admin do
+      events = Events.list_events()
+      render(conn, "index.html", events: events)
+    else
+      events = Events.list_events_by_caterer(current_user.id)
+      render(conn, "index.html", events: events)
+    end
   end
 
   def new(conn, _params) do
