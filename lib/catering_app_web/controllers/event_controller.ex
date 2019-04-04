@@ -33,7 +33,7 @@ defmodule CateringAppWeb.EventController do
         })
         conn
         |> put_flash(:info, "Event created successfully.")
-        |> redirect(to: Routes.event_path(conn, :show, event))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -59,7 +59,7 @@ defmodule CateringAppWeb.EventController do
       {:ok, event} ->
         conn
         |> put_flash(:info, "Event updated successfully.")
-        |> redirect(to: Routes.event_path(conn, :show, event))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", event: event, changeset: changeset)

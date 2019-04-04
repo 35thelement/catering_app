@@ -19,7 +19,7 @@ defmodule CateringAppWeb.MenuController do
       {:ok, menu} ->
         conn
         |> put_flash(:info, "Menu created successfully.")
-        |> redirect(to: Routes.menu_path(conn, :show, menu))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule CateringAppWeb.MenuController do
       {:ok, menu} ->
         conn
         |> put_flash(:info, "Menu updated successfully.")
-        |> redirect(to: Routes.menu_path(conn, :show, menu))
+        |> redirect(to: Routes.event_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", menu: menu, changeset: changeset)
