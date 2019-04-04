@@ -54,15 +54,22 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Finally, connect to the socket:
 socket.connect()
 
-let channel = socket.channel("tangerine", {user: window.userToken})
+let channel = socket.channel("tangerine:all", {})
 
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-channel.on("change", ()=>{
-  console.log("in change")
-  channel.push("new_user", {user: window.userToken})
+channel.on("change", (user)=>{
+  if (document.getElementById(user.is_caterer)) {
+    var table = document.getElementById("userTable");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = user.username;
+    cell2.innerHTML = user.bio;
+  }
 })
 
 export default socket

@@ -14,7 +14,7 @@
 <h1>List of Registered Caterers</h1>
 <% end %>
 
-<table class="table">
+<table class="table" id="userTable">
   <thead>
     <tr>
       <th>Username</th>
@@ -25,7 +25,7 @@
   </thead>
   <tbody>
   <%= for user <- @users do %>
-  <tr>
+  <tr id=<%= user.is_caterer %>>
     <td><%= user.username %></td>
     <td><%= user.bio %></td>
 
