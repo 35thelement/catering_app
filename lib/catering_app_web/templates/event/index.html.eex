@@ -28,11 +28,12 @@
     <p class="alert alert-danger" role="alert">Not yet approved</p>
     <% end %>
     <!-- <%= link "View Menu", to: Routes.menu_path(@conn, :show, event.menu) %> -->
-    <%= if @current_user.is_caterer do %>
 
-    <%= link "Edit menu", to: Routes.menu_path(@conn, :edit, menu) %>
-    <% else %>
-    <%= link "Edit", to: Routes.event_path(@conn, :edit, event)%>
+    <%= link "Edit menu", class: "btn", to: Routes.menu_path(@conn, :edit, menu) %>
+    <%= if !@current_user.is_caterer do %>
+    <%= link "Edit details", class: "padd", to: Routes.event_path(@conn, :edit, event)%>
+
+
 
     <% end %>
 
@@ -46,9 +47,11 @@
 </div>
 
 
+<div class="top-space">
+  <%= if @current_user != nil and not @current_user.is_caterer do %>
+  <span ><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+  <% end %>
+</div>
 
-<%= if @current_user != nil and not @current_user.is_caterer do %>
-<span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
-<% end %>
 </div>
 </div>

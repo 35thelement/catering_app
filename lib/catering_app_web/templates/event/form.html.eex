@@ -41,6 +41,7 @@
 
   <div>
     <%= submit "Save", class: "btn"%>
+
   </div>
 <% end %>
 </div>
