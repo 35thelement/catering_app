@@ -14,13 +14,11 @@
       <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.caterer_id).username %></h6>
 
     <% end %>
-    <%= for menu <- CateringApp.Menus.list_menus_by_event(event.client_id) do %>
-      <p class="card-text">Dish 1: <%= menu.dish1 %> <br>
-      Dish 2: <%= menu.dish2 %><br>
-      Dish 3: <%= menu.dish3 %><br>
-      Dish 4: <%= menu.dish4 %><br>
-      Dish 5: <%= menu.dish5 %></p>
-
+      <p class="card-text">Dish 1: <%= event.menu.dish1 %> <br>
+      Dish 2: <%= event.menu.dish2 %><br>
+      Dish 3: <%= event.menu.dish3 %><br>
+      Dish 4: <%= event.menu.dish4 %><br>
+      Dish 5: <%= event.menu.dish5 %></p>
 
     <%= if event.approved do %>
     <p class="alert alert-success" role="alert">Approved</p>
@@ -29,7 +27,7 @@
     <% end %>
     <!-- <%= link "View Menu", to: Routes.menu_path(@conn, :show, event.menu) %> -->
 
-    <%= link "Edit menu", class: "btn", to: Routes.menu_path(@conn, :edit, menu) %>
+    <%= link "Edit menu", class: "btn", to: Routes.menu_path(@conn, :edit, event.menu) %>
     <%= if !@current_user.is_caterer do %>
     <%= link "Edit details", class: "padd", to: Routes.event_path(@conn, :edit, event)%>
 
@@ -38,7 +36,6 @@
     <% end %>
 
     <%= link "Delete", class: "delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
-<% end %>
   </div>
 </div>
 </div>

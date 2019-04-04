@@ -7,32 +7,60 @@
     </div>
   <% end %>
 
+  <%= label f, :preferences, "Enter your ingredients preferences as ingredients separated by commas with no spaces or periods." %>
+  <%= if @current_user != nil && not @current_user.is_caterer do %>
+  <%= text_input f, :preferences, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :preferences, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
+  <%= error_tag f, :preferences %>
+
   <%= label f, :dish1 %>
+  <%= if @current_user != nil && @current_user.is_caterer do %>
   <%= text_input f, :dish1, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :dish1, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
   <%= error_tag f, :dish1 %>
 
   <%= label f, :dish2 %>
+  <%= if @current_user != nil && @current_user.is_caterer do %>
   <%= text_input f, :dish2, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :dish2, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
   <%= error_tag f, :dish2 %>
 
   <%= label f, :dish3 %>
+  <%= if @current_user != nil && @current_user.is_caterer do %>
   <%= text_input f, :dish3, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :dish3, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
   <%= error_tag f, :dish3 %>
 
   <%= label f, :dish4 %>
+  <%= if @current_user != nil && @current_user.is_caterer do %>
   <%= text_input f, :dish4, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :dish4, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
   <%= error_tag f, :dish4 %>
 
   <%= label f, :dish5 %>
+  <%= if @current_user != nil && @current_user.is_caterer do %>
   <%= text_input f, :dish5, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :dish5, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
   <%= error_tag f, :dish5 %>
 
-  <%= label f, :preferences, "Enter your ingredients preferences as ingredients separated by commas with no spaces or periods." %>
-  <%= text_input f, :preferences, class: "form-control" %>
-  <%= error_tag f, :preferences %>
-
   <%= label f, :feedback %>
+  <%= if @current_user != nil && not @current_user.is_caterer do %>
   <%= text_input f, :feedback, class: "form-control" %>
+  <% else %>
+  <%= text_input f, :feedback, [class: "form-control", disabled: "disabled"] %>
+  <% end %>
   <%= error_tag f, :feedback %>
 
   <div class="small-top">
