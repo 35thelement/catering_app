@@ -19,11 +19,32 @@
   </div>
 
   <% else %>
+    <div class="row">
+      <div class="col-4">
+        <h3>Add Event</h3>
+        <p>Hosting an event? Looking for a caterer? Tell us about your event and we'll
+        make it happen.</p>
+        <span><%= link "New event", class: "btn", to: Routes.event_path(@conn, :new) %></span>
+      </div>
+      <div class="col-4">
+        <h3>View Events</h3>
+        <p>Go here to view your already scheduled events. You'll be able to make
+        changes and approve menus.</p>
+        <span><%= link "View events", class: "btn", to: Routes.event_path(@conn, :index) %></span>
 
-    <span><%= link "New event", class: "btn", to: Routes.event_path(@conn, :new) %></span>
+      </div>
+      <div class="col-4">
+        <h3>Browse Caterers</h3>
+        <p>Take a look here to learn about each caterer so you can select the best one for
+        your party or event.</p>
+        <span><%= link "View caterers", class: "btn", to: Routes.user_path(@conn, :index) %></span>
+
+      </div>
+    </div>
+
     <% end %>
     <h2 class="top-space">About you</h2>
-    <p>to do: fill in bio info</p>
+    <p><%= @current_user.bio %></p>
     <% end %>
 
 
