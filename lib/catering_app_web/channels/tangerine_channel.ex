@@ -1,10 +1,13 @@
 defmodule CateringAppWeb.TangerineChannel do
   use CateringAppWeb, :channel
 
-  alias CateringAppWeb.UserController
-
   def join("tangerine", _payload, socket) do
-    {:ok, socket}
+    if authorized?(_payload) do
+      {:ok, socket}
+    else
+      {:error, %{reason: "unauthorized"}}
+    end
+
   end
 
   def handle_in("new_user", %{"user" => current_user}, socket) do
@@ -13,8 +16,7 @@ defmodule CateringAppWeb.TangerineChannel do
     #Routes.user_path(@conn, :index)
   end
 
-  def broadcast_update() do
-    IO.inspect("payload")
-    CateringAppWeb.Endpoint.broadcast("tangerine", "change", %{})
+  defp authorized?(_payload) do
+    true
   end
 end

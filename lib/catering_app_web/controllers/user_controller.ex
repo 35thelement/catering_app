@@ -33,7 +33,7 @@ defmodule CateringAppWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     case Users.create_user(user_params) do
       {:ok, user} ->
-        CateringAppWeb.TangerineChannel.broadcast_update()
+        CateringAppWeb.Endpoint.broadcast!("tangerine", "change", %{})
         conn
         |> put_flash(:info, "User created successfully.")
         |> put_session(:user_id, user.id)

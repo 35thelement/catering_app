@@ -54,6 +54,15 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Finally, connect to the socket:
 socket.connect()
 
-// Now that you are connected, you can join channels with a topic:
+let channel = socket.channel("tangerine", {user: window.userToken})
+
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("error", resp => { console.log("Unable to join", resp) })
+
+channel.on("change", ()=>{
+  console.log("in change")
+  channel.push("new_user", {user: window.userToken})
+})
 
 export default socket

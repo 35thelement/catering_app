@@ -20,14 +20,3 @@ import "bootstrap";
 //
 // Local files can be imported directly using relative paths, for example:
 import socket from "./socket"
-
-let channel = socket.channel("tangerine", {user: window.userToken})
-
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
-
-channel.on("change", ()=>{
-  console.log("in change");
-  channel.push("new_user", {user: window.userToken});
-});
