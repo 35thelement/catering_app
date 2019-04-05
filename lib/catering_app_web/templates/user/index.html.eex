@@ -32,7 +32,7 @@
       <td>Caterer: <%= user.username %></td>
     <% else %>
     <%= if user.admin do %>
-      <td>Admin: <%= user.username %></td>
+      <td id="admin">Admin: <%= user.username %></td>
     <% else %>
       <td>Client: <%= user.username %></td>
     <% end %>
