@@ -83,10 +83,15 @@ if (window.channelName) {
 
   channel2.on("change_menu", (menu)=>{
     if (menu.preferences) {
-
+      $("#preferences").val(menu.preferences)
+      $("#feedback").val(menu.feedback)
     }
     else {
-      
+      $("#dish1").val(menu.dish1)
+      $("#dish2").val(menu.dish2)
+      $("#dish3").val(menu.dish3)
+      $("#dish4").val(menu.dish4)
+      $("#dish5").val(menu.dish5)
     }
   })
 }
