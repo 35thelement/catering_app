@@ -68,7 +68,21 @@ channel.on("add_user", (user)=>{
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-    cell1.innerHTML = user.username;
+    if (document.getElementById("admin")) {
+      if (user.is_caterer === "true") {
+        cell1.innerHTML = "Caterer: "
+      }
+      else if (user.admin === "true") {
+        cell1.innerHTML = "Admin: "
+      }
+      else {
+        cell1.innerHTML = "Client: "
+      }
+      cell1.innerHTML += user.username;
+    }
+    else {
+      cell1.innerHTML = user.username;
+    }
     cell2.innerHTML = user.bio;
     cell3.innerHTML = "Refresh Page";
   }
@@ -78,7 +92,7 @@ if (window.channelName) {
   let channel2 = socket.channel(window.channelName, {})
 
   channel2.join()
-    .receive("ok", resp => { console.log("Joined menu successfully", resp) })
+    .receive("ok", resp => { console.log("Joined Menu Channel successfully", resp) })
     .receive("error", resp => { console.log("Unable to join", resp) })
 
   channel2.on("change_menu", (menu)=>{

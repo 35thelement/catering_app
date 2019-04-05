@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-8 offset-2 top-space">
-  <%= if @current_user != nil do %>
+<%= if @current_user != nil do %>
 <%= if @current_user.admin do %>
 <h1>All Users</h1>
 <% end %>
@@ -26,12 +26,27 @@
   <tbody>
   <%= for user <- @users do %>
   <tr id=<%= user.is_caterer %>>
-    <td><%= user.username %></td>
+    <%= if @current_user != nil do %>
+    <%= if @current_user.admin do %>
+    <%= if user.is_caterer do %>
+      <td>Caterer: <%= user.username %></td>
+    <% else %>
+    <%= if user.admin do %>
+      <td id="admin">Admin: <%= user.username %></td>
+    <% else %>
+      <td>Client: <%= user.username %></td>
+    <% end %>
+    <% end %>
+    <% else %>
+      <td><%= user.username %></td>
+    <% end %>
+    <% else %>
+      <td><%= user.username %></td>
+    <% end %>
     <td><%= user.bio %></td>
-
     <td>
       <%= link "Show", to: Routes.user_path(@conn, :show, user) %>
-      <%= if @current_user != nil and (@current_user.admin or @current_user.id == user.id) do %>
+      <%= if @current_user != nil and @current_user.admin do %>
       <%= link "Edit", to: Routes.user_path(@conn, :edit, user) %>
       <%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %>
       <% end %>

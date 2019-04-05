@@ -13,10 +13,15 @@
   <div class="card-body">
     <h5 class="card-title"><%= event.name %></h5>
     <%= if @current_user.is_caterer do %>
-      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.client_id).username %></h6>
+      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | Client: <%= CateringApp.Users.get_user(event.client_id).username %></h6>
     <% else %>
-      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | <%= CateringApp.Users.get_user(event.caterer_id).username %></h6>
-
+    <%= if @current_user.admin do %>
+      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | Caterer: <%= CateringApp.Users.get_user(event.caterer_id).username %>
+      | Client: <%= CateringApp.Users.get_user(event.client_id).username %>
+      </h6>
+    <% else %>
+      <h6 class="card-subtitle mb-2 text-muted"><%= event.day %> | Caterer: <%= CateringApp.Users.get_user(event.caterer_id).username %></h6>
+    <% end %>
     <% end %>
       <p class="card-text">Dish 1: <%= event.menu.dish1 %> <br>
       Dish 2: <%= event.menu.dish2 %><br>

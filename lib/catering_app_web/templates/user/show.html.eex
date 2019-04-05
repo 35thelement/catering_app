@@ -1,22 +1,39 @@
 <div class="row">
   <div class="col-8 offset-2 top-space">
-    <%= if !@user.is_caterer do %>
-      <h1>Your events for <%= @user.username %></h1>
+    <%= if @user.is_caterer do %>
+      <h1>About Caterer: <%= @user.username %></h1>
+      <h5><strong>Bio:</strong> <%= @user.bio %></h5>
+      <p></p>
+    <% else %>
+    <%= if @user.admin do %>
+      <h1>About Admin: <%= @user.username %></h1>
+      <h5><strong>Bio:</strong> <%= @user.bio %></h5>
+      <p></p>
+    <% else %>
+      <h1>Events for Client: <%= @user.username %></h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Event name</th>
+            <th>Date</th>
 
-
-
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Event name</th>
-          <th>Date</th>
-
-          <th></th>
-        </tr>
-      </thead>
+            <th></th>
+          </tr>
+        </thead>
       <tbody>
+      <%= if @current_user.admin do %>
+      <%= for event <- CateringApp.Events.list_events_by_client(@user.id) do %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.day %></td>
 
+        <td>
+          <%= link "Details", to: Routes.event_path(@conn, :show, event) %>
+
+        </td>
+      </tr>
+      <% end %>
+      <% else %>
       <%= for event <- CateringApp.Events.list_events_by_user(@user.id, @current_user.id) do %>
       <tr>
         <td><%= event.name %></td>
@@ -28,14 +45,10 @@
         </td>
       </tr>
       <% end %>
+      <% end %>
     </tbody>
     </table>
-  <% else %>
-    <h1>About <%= @user.username %></h1>
-    <h5><strong>Bio:</strong> <%= @user.bio %></h5>
-    <p></p>
-
-
+  <% end %>
   <% end %>
 
 
