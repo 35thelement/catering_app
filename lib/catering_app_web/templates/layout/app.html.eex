@@ -56,6 +56,6 @@
       <% end %>
       <%= render @view_module, @view_template, assigns %>
     </main>
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="text/javascript" src="<%= "http://www.the-real-ice-man.website:4000/js/app.js" %>"></script>
   </body>
   </html>
