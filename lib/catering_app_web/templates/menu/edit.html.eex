@@ -7,3 +7,6 @@
 
 </div>
 </div>
+<script>
+  window.channelName = "menu:<%= @menu.id %>"
+</script>

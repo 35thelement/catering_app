@@ -7,14 +7,19 @@
     </div>
   <% end %>
 
-  <%= label f, :preferences, "Enter your ingredients preferences as ingredients separated by commas with no spaces or periods." %>
+  <%= label f, :preferences %>
   <%= if @current_user != nil && not @current_user.is_caterer do %>
+  <p>Enter your ingredients preferences as ingredients separated by commas with no spaces or periods.</p>
   <%= text_input f, :preferences, class: "form-control" %>
+  <br/>
+  <p>Your Caterer's Suggestions:</p>
   <% else %>
+  <p>Your Client's Preferences:</p>
   <%= text_input f, :preferences, [class: "form-control", disabled: "disabled"] %>
+  <br/>
+  <p>Edit these dishes based off client's suggestions and feedback:</p>
   <% end %>
   <%= error_tag f, :preferences %>
-
   <%= label f, :dish1 %>
   <%= if @current_user != nil && @current_user.is_caterer do %>
   <%= text_input f, :dish1, class: "form-control" %>
@@ -54,11 +59,13 @@
   <%= text_input f, :dish5, [class: "form-control", disabled: "disabled"] %>
   <% end %>
   <%= error_tag f, :dish5 %>
-
+  <br/>
   <%= label f, :feedback %>
   <%= if @current_user != nil && not @current_user.is_caterer do %>
+  <p>Enter your feedback on the current suggested menu here:</p>
   <%= text_input f, :feedback, class: "form-control" %>
   <% else %>
+  <p>Your Client's Feedback:</p>
   <%= text_input f, :feedback, [class: "form-control", disabled: "disabled"] %>
   <% end %>
   <%= error_tag f, :feedback %>

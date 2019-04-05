@@ -9,6 +9,7 @@
 import {Socket} from "phoenix"
 
 let socket = new Socket("/socket", {params: {token: window.userToken}})
+window.socket = socket
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -60,7 +61,7 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-channel.on("change", (user)=>{
+channel.on("add_user", (user)=>{
   if (document.getElementById(user.is_caterer)) {
     var table = document.getElementById("userTable");
     var row = table.insertRow(1);
@@ -69,7 +70,26 @@ channel.on("change", (user)=>{
     var cell3 = row.insertCell(2);
     cell1.innerHTML = user.username;
     cell2.innerHTML = user.bio;
+    cell3.innerHTML = "Refresh Page";
   }
 })
+
+if (window.channelName) {
+  let channel2 = socket.channel(window.channelName, {})
+
+  channel2.join()
+    .receive("ok", resp => { console.log("Joined menu successfully", resp) })
+    .receive("error", resp => { console.log("Unable to join", resp) })
+
+  channel2.on("change_menu", (menu)=>{
+    if (menu.preferences) {
+
+    }
+    else {
+      
+    }
+  })
+}
+
 
 export default socket

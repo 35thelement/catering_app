@@ -39,7 +39,7 @@ defmodule CateringAppWeb.MenuController do
 
   def update(conn, %{"id" => id, "menu" => menu_params}) do
     menu = Menus.get_menu!(id)
-
+    CateringAppWeb.Endpoint.broadcast!("menu:"<>id, "change_menu", menu_params)
     case Menus.update_menu(menu, menu_params) do
       {:ok, menu} ->
         conn
