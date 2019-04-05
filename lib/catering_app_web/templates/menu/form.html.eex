@@ -17,11 +17,12 @@
       <p>Your Client's Preferences:</p>
       <%= text_input f, :preferences, class: "form-control", disabled: "disabled", id: "preferences" %>
       <br/>
-      <p>Edit these dishes based off client's suggestions and feedback:</p>
       <button>
         <%= link "Search by Preferences", to: Routes. results_path(@conn, :index, %{"prefs" => @menu.preferences}) %>
       </button>
       <br/>
+      <br/>
+      <p>Edit these dishes based off client's suggestions and feedback:</p>
     <% end %>
 
     <%= error_tag f, :preferences %>
