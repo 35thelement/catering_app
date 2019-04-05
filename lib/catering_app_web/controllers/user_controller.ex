@@ -12,7 +12,7 @@ defmodule CateringAppWeb.UserController do
     else
       cond do
         current_user.admin -> Users.list_users()
-        current_user.is_caterer -> IO.inspect(Users.list_clients())
+        current_user.is_caterer -> Users.list_clients()
         true -> Users.list_caterers()
       end
     end
@@ -21,7 +21,6 @@ defmodule CateringAppWeb.UserController do
   def index(conn, _params) do
     current_user = conn.assigns[:current_user]
     users = get_users(current_user)
-
     render(conn, "index.html", users: users)
   end
 
