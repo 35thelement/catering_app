@@ -46,6 +46,7 @@ defmodule CateringApp.MixProject do
       {:comeonin, "~> 4.1"},
       {:argon2_elixir, "~> 1.3"},
       {:httpoison, "~> 1.5"},
+      {:poison, "~> 3.1.0"},
       {:distillery, "~> 2.0"}
     ]
   end
