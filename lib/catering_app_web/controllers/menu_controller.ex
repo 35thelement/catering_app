@@ -34,7 +34,11 @@ defmodule CateringAppWeb.MenuController do
   def edit(conn, %{"id" => id}) do
     menu = Menus.get_menu!(id)
     changeset = Menus.change_menu(menu)
-    render(conn, "edit.html", menu: menu, changeset: changeset)
+    http_prefs = String.replace(menu.preferences, " ", "%20")
+    results = HTTPoison.get("https://www.food2fork.com/api/search?key=d6203ad14cc7132eb562d765899b7d1d&q=" <> http_prefs)
+    decResults = Poison.decode(elem(results, 1).body)
+    listResults = decResults |> elem(1) |> Map.fetch("recipes") |> elem(1)
+    render(conn, "edit.html", menu: menu, changeset: changeset, results: listResults)
   end
 
   def show_results(conn, %{"preferences" => prefs}) do
