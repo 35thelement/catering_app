@@ -21,6 +21,7 @@ defmodule CateringAppWeb.Router do
     resources "/users", UserController
     resources "/events", EventController
     resources "/menus", MenuController, only: [:show, :update, :edit]
+    resources "/results", ResultsController, only: [:index]
     resources "/sessions", SessionsController, only: [:create, :delete], singleton: true
   end
 

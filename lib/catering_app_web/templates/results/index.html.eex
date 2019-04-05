@@ -1,0 +1,4 @@
+<div>
+  <p>API RESULTS: <%=@prefs%></p>
+</div>
+

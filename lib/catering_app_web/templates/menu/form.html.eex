@@ -1,78 +1,84 @@
 <div class="row">
   <div class="col-12">
-  <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+    <%= form_for @changeset, @action, fn f -> %>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+
+    <%= label f, :preferences %>
+    <%= if @current_user != nil && not @current_user.is_caterer do %>
+      <p>Enter your ingredients preferences as ingredients separated by commas with no spaces or periods.</p>
+      <%= text_input f, :preferences, class: "form-control" %>
+      <br/>
+      <p>Your Caterer's Suggestions:</p>
+    <% else %>
+      <p>Your Client's Preferences:</p>
+      <%= text_input f, :preferences, class: "form-control", disabled: "disabled", id: "preferences" %>
+      <br/>
+      <p>Edit these dishes based off client's suggestions and feedback:</p>
+      <button>
+        <%= link "Search by Preferences", to: Routes. results_path(@conn, :index, %{"prefs" => @menu.preferences}) %>
+      </button>
+      <br/>
+    <% end %>
+
+    <%= error_tag f, :preferences %>
+    <%= label f, :dish1 %>
+    <%= if @current_user != nil && @current_user.is_caterer do %>
+      <%= text_input f, :dish1, class: "form-control" %>
+    <% else %>
+      <%= text_input f, :dish1, class: "form-control", disabled: "disabled", id: "dish1" %>
+    <% end %>
+    <%= error_tag f, :dish1 %>
+
+    <%= label f, :dish2 %>
+    <%= if @current_user != nil && @current_user.is_caterer do %>
+      <%= text_input f, :dish2, class: "form-control" %>
+    <% else %>
+      <%= text_input f, :dish2, class: "form-control", disabled: "disabled", id: "dish2" %>
+    <% end %>
+    <%= error_tag f, :dish2 %>
+
+    <%= label f, :dish3 %>
+    <%= if @current_user != nil && @current_user.is_caterer do %>
+      <%= text_input f, :dish3, class: "form-control" %>
+    <% else %>
+      <%= text_input f, :dish3, class: "form-control", disabled: "disabled", id: "dish3"  %>
+    <% end %>
+    <%= error_tag f, :dish3 %>
+
+    <%= label f, :dish4 %>
+    <%= if @current_user != nil && @current_user.is_caterer do %>
+      <%= text_input f, :dish4, class: "form-control" %>
+    <% else %>
+      <%= text_input f, :dish4, class: "form-control", disabled: "disabled", id: "dish4"  %>
+    <% end %>
+    <%= error_tag f, :dish4 %>
+
+    <%= label f, :dish5 %>
+    <%= if @current_user != nil && @current_user.is_caterer do %>
+      <%= text_input f, :dish5, class: "form-control" %>
+    <% else %>
+      <%= text_input f, :dish5, class: "form-control", disabled: "disabled", id: "dish5" %>
+    <% end %>
+    <%= error_tag f, :dish5 %>
+    <br/>
+
+    <%= label f, :feedback %>
+    <%= if @current_user != nil && not @current_user.is_caterer do %>
+      <p>Enter your feedback on the current suggested menu here:</p>
+      <%= text_input f, :feedback, class: "form-control" %>
+    <% else %>
+      <p>Your Client's Feedback:</p>
+      <%= text_input f, :feedback, class: "form-control", disabled: "disabled", id: "feedback" %>
+    <% end %>
+    <%= error_tag f, :feedback %>
+
+    <div class="small-top">
+      <%= submit "Save", class: "btn" %>
     </div>
   <% end %>
-
-  <%= label f, :preferences %>
-  <%= if @current_user != nil && not @current_user.is_caterer do %>
-  <p>Enter your ingredients preferences as ingredients separated by commas with no spaces or periods.</p>
-  <%= text_input f, :preferences, class: "form-control" %>
-  <br/>
-  <p>Your Caterer's Suggestions:</p>
-  <% else %>
-  <p>Your Client's Preferences:</p>
-  <%= text_input f, :preferences, class: "form-control", disabled: "disabled", id: "preferences" %>
-  <br/>
-  <p>Edit these dishes based off client's suggestions and feedback:</p>
-  <% end %>
-  <%= error_tag f, :preferences %>
-  <%= label f, :dish1 %>
-  <%= if @current_user != nil && @current_user.is_caterer do %>
-  <%= text_input f, :dish1, class: "form-control" %>
-  <% else %>
-  <%= text_input f, :dish1, class: "form-control", disabled: "disabled", id: "dish1" %>
-  <% end %>
-  <%= error_tag f, :dish1 %>
-
-  <%= label f, :dish2 %>
-  <%= if @current_user != nil && @current_user.is_caterer do %>
-  <%= text_input f, :dish2, class: "form-control" %>
-  <% else %>
-  <%= text_input f, :dish2, class: "form-control", disabled: "disabled", id: "dish2" %>
-  <% end %>
-  <%= error_tag f, :dish2 %>
-
-  <%= label f, :dish3 %>
-  <%= if @current_user != nil && @current_user.is_caterer do %>
-  <%= text_input f, :dish3, class: "form-control" %>
-  <% else %>
-  <%= text_input f, :dish3, class: "form-control", disabled: "disabled", id: "dish3"  %>
-  <% end %>
-  <%= error_tag f, :dish3 %>
-
-  <%= label f, :dish4 %>
-  <%= if @current_user != nil && @current_user.is_caterer do %>
-  <%= text_input f, :dish4, class: "form-control" %>
-  <% else %>
-  <%= text_input f, :dish4, class: "form-control", disabled: "disabled", id: "dish4"  %>
-  <% end %>
-  <%= error_tag f, :dish4 %>
-
-  <%= label f, :dish5 %>
-  <%= if @current_user != nil && @current_user.is_caterer do %>
-  <%= text_input f, :dish5, class: "form-control" %>
-  <% else %>
-  <%= text_input f, :dish5, class: "form-control", disabled: "disabled", id: "dish5" %>
-  <% end %>
-  <%= error_tag f, :dish5 %>
-  <br/>
-  <%= label f, :feedback %>
-  <%= if @current_user != nil && not @current_user.is_caterer do %>
-  <p>Enter your feedback on the current suggested menu here:</p>
-  <%= text_input f, :feedback, class: "form-control" %>
-  <% else %>
-  <p>Your Client's Feedback:</p>
-  <%= text_input f, :feedback, class: "form-control", disabled: "disabled", id: "feedback" %>
-  <% end %>
-  <%= error_tag f, :feedback %>
-
-  <div class="small-top">
-    <%= submit "Save", class: "btn" %>
   </div>
-<% end %>
-</div>
 </div>

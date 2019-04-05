@@ -37,6 +37,10 @@ defmodule CateringAppWeb.MenuController do
     render(conn, "edit.html", menu: menu, changeset: changeset)
   end
 
+  def show_results(conn, %{"preferences" => prefs}) do
+    IO.puts(prefs)
+  end
+
   def update(conn, %{"id" => id, "menu" => menu_params}) do
     menu = Menus.get_menu!(id)
     CateringAppWeb.Endpoint.broadcast!("menu:"<>id, "change_menu", menu_params)
