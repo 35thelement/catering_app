@@ -42,7 +42,8 @@ defmodule CateringAppWeb.EventController do
         |> redirect(to: Routes.event_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        caterers = CateringApp.Users.get_caterers()
+        render(conn, "new.html", changeset: changeset, caterers: caterers)
     end
   end
 
