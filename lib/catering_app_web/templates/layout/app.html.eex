@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+  <%= if @conn.request_path != "/results" do %>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
   <a class="navbar-brand" href="/">Tangerine</a>
@@ -46,6 +46,7 @@
   </div>
   </div>
 </nav>
+<% end %>
 
     <main role="main" class="container">
       <%= if get_flash(@conn, :info) do %>

@@ -1,6 +1,7 @@
 </br>
+<p>Credit <a href="food2fork.com">Food2Fork</a> for the recipe search engine</p>
 <div>
-  <p>Search results for: <%=@prefs%></p>
+  <p>Search results for: <%= @prefs %></p>
 </div>
 <table class="table">
   <thead>
@@ -34,4 +35,3 @@
     <% end %>
   </tbody>
 </table>
-<p>Credit <a href="food2fork.com">Food2Fork</a> for the recipe search engine</p>

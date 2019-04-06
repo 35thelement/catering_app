@@ -96,6 +96,6 @@ document.getElementById("search_recipes").addEventListener("click", showSearch);
 
 function showSearch() {
   document.getElementById("recipes_table").innerHTML =
-  "<iframe src='<%= Routes.event_path(@conn, :index) %>'><p>Your browser does not support iframes.</p></iframe>"
+  "<iframe src='<%= Routes.results_path(@conn, :index, %{"prefs" => @menu.preferences}) %>'><p>Your browser does not support iframes.</p></iframe>"
 }
 </script>

@@ -16,7 +16,7 @@ defmodule CateringAppWeb.MenuController do
 
   def create(conn, %{"menu" => menu_params}) do
     case Menus.create_menu(menu_params) do
-      {:ok, menu} ->
+      {:ok, _menu} ->
         conn
         |> put_flash(:info, "Menu created successfully.")
         |> redirect(to: Routes.event_path(conn, :index))
@@ -37,7 +37,7 @@ defmodule CateringAppWeb.MenuController do
     render(conn, "edit.html", menu: menu, changeset: changeset)
   end
 
-  def show_results(conn, %{"preferences" => prefs}) do
+  def show_results(_conn, %{"preferences" => prefs}) do
     IO.puts(prefs)
   end
 
@@ -45,7 +45,7 @@ defmodule CateringAppWeb.MenuController do
     menu = Menus.get_menu!(id)
     CateringAppWeb.Endpoint.broadcast!("menu:"<>id, "change_menu", menu_params)
     case Menus.update_menu(menu, menu_params) do
-      {:ok, menu} ->
+      {:ok, _menu} ->
         conn
         |> put_flash(:info, "Menu updated successfully.")
         |> redirect(to: Routes.event_path(conn, :index))
