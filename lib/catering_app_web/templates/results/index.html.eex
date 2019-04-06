@@ -16,7 +16,7 @@
       <tr>
         <td>
           <a href = "<%= recipe |> Map.fetch("source_url") |> elem(1) %>" target="_blank">
-            <%= recipe |> Map.fetch("title") |> elem(1) %> 
+            <%= recipe |> Map.fetch("title") |> elem(1) %>
           </a>
         </td>
         <td>
@@ -24,10 +24,10 @@
             <%= recipe |> Map.fetch("publisher") |> elem(1) %>
           </a>
         </td>
-        <td> <%= recipe |> Map.fetch("social_rank") |> elem(1) %> </td>
+        <td> <%= recipe |> Map.fetch("social_rank") |> elem(1) |> Float.round(1) %> </td>
         <td>
-          <img src="<%= recipe |> Map.fetch("image_url") |> elem(1) %>" 
-               alt="<%= recipe |> Map.fetch("title") |> elem(1) %>" 
+          <img src="<%= recipe |> Map.fetch("image_url") |> elem(1) %>"
+               alt="<%= recipe |> Map.fetch("title") |> elem(1) %>"
                width="250" height="166">
         </td>
       </tr>
