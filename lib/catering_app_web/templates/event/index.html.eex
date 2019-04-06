@@ -40,7 +40,6 @@
     <%= if not @current_user.is_caterer do %>
     <%= link "Edit details", class: "padd", to: Routes.event_path(@conn, :edit, event)%>
     <% end %>
-    <%= IO.inspect(Routes.event_path(@conn, :delete, event)) %>
     <%= link "Delete", class: "delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %>
   </div>
 </div>
