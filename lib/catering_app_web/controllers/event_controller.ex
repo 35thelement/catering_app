@@ -4,7 +4,6 @@ defmodule CateringAppWeb.EventController do
   alias CateringApp.Events
   alias CateringApp.Events.Event
   alias CateringApp.Menus
-  alias CateringApp.Menus.Menu
 
   plug CateringAppWeb.Plugs.CheckUser when action in [:new, :create, :update, :delete]
 
@@ -63,7 +62,7 @@ defmodule CateringAppWeb.EventController do
     event = Events.get_event!(id)
 
     case Events.update_event(event, event_params) do
-      {:ok, event} ->
+      {:ok, _event} ->
         conn
         |> put_flash(:info, "Event updated successfully.")
         |> redirect(to: Routes.event_path(conn, :index))
