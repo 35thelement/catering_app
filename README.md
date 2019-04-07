@@ -7,13 +7,13 @@
 - Jake Piersall
 
 ## Deployed App URL:
-// TODO: ADD DEPLOYED APP URL
+http://tangerine.the-real-ice-man.website
 
 ## App GitHub Repository:
 https://github.com/35thelement/catering_app
 
 ## App Status:
-- Deployed: // TODO: ADD DEPLOYMENT STATUS
+- Deployed: **YES**
 - Working: **YES**
 
 ## Individual Work
