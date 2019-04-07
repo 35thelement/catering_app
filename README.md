@@ -41,7 +41,7 @@ https://github.com/35thelement/catering_app
 - Presentation Setup
 - Various Fixes
 
-### Jake:
+### Jacob:
 - API Request with HTTPoison
 - Rendering API Request Results
 - API Key Management
