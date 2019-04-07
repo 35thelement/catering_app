@@ -92,7 +92,9 @@
   <% end %>
 </div>
 <script type="text/javascript">
-document.getElementById("search_recipes").addEventListener("click", showSearch);
+if (document.getElementById("search_recipes") !== null) {
+  document.getElementById("search_recipes").addEventListener("click", showSearch);
+}
 
 function showSearch() {
   document.getElementById("recipes_table").innerHTML =
