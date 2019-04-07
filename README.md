@@ -4,7 +4,7 @@
 - Ben Romine
 - Brenna Sorkin
 - Cara Sciorilli
-- Jake Piersall
+- Jacob Piersall
 
 ## Deployed App URL:
 http://tangerine.the-real-ice-man.website
