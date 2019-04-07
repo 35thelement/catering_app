@@ -1,5 +1,5 @@
 </br>
-<p>Credit <a href="http://www.food2fork.com">Food2Fork</a> for the recipe search engine</p>
+<p>Credit <a href="http://www.food2fork.com" target="_blank">Food2Fork</a> for the recipe search engine</p>
 <div>
   <p>Search results for: <%= @prefs %></p>
 </div>
